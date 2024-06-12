@@ -13,6 +13,19 @@ import {
   recButton,
 } from "./elements.js";
 
+import {
+  onResetButtonClick,
+ // onFaceTrackingSelect
+} from "./toolbar.js";
+
+//import { RekognitionClient, DetectFacesCommand } from '@aws-sdk/client-rekognition';
+
+
+
+// import {
+//   analyzeImage
+// } from "./rekog.js";
+
 let isSoundOn = 0;
 let recDurationInterval;
 let recDuration;
@@ -28,13 +41,14 @@ const onMuteButtonClick = () => {
 
 const onScreenshotButtonClick = async (e) => {
   if (e.type === "mousedown") {
+    onResetButtonClick();
     screenshotButton.src = "assets/icons/controls/icon-screenshot-active.svg";
   } else {
     screenshotButton.src = "assets/icons/controls/icon-screenshot.svg";
     const url = URL.createObjectURL(await getScreenshot());
     const popup = document.createElement("div");
     popup.classList.add("popup", "popup__hidden");
-    popup.innerHTML = `<span class="popup__bold">Screenshot is ready</span> Check the <span id="screenshot-link"><a href="${url}" target="_blank">link</a></span>`;
+    popup.innerHTML = `<span class="popup__bold">Analyzing your face...</span> <span id="screenshot-link"><a href="${url}" target="_blank">link</a></span>`;
     popups.prepend(popup);
 
     setTimeout(() => {
@@ -42,6 +56,8 @@ const onScreenshotButtonClick = async (e) => {
     }, 20);
 
     setTimeout(() => {
+      //onFaceTrackingSelect();
+      location.reload();
       popup.classList.add("popup__hidden");
       setTimeout(() => {
         popup.remove();

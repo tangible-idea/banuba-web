@@ -1,15 +1,8 @@
 import { fps, getSource, startPlayer } from "../BanubaPlayer.js";
-
-import {
-  webcamSourceButton,
-  imageSourceButton,
-  startScreen,
-  overlay,
-  fpsBlock,
-} from "./elements.js";
+import { startScreen, overlay, fpsBlock } from "./elements.js";
 
 const onSourceSelect = () => {
-  startScreen.classList.add("hidden");
+  //startScreen.classList.add("hidden");
   overlay.classList.add("hidden");
   setInterval(() => {
     fpsBlock.querySelectorAll("span").forEach((el) => {
@@ -18,17 +11,13 @@ const onSourceSelect = () => {
   });
 };
 
-const onWebcamSelect = (e) => {
-  const source = getSource(e.target.value);
+// Automatically select the webcam source and start the player
+const startWithWebcam = () => {
+  const source = getSource("webcam");
   startPlayer(source);
   onSourceSelect();
 };
 
-const onImageSelect = (e) => {
-  const source = getSource(e.target.value, e.target.files[0]);
-  startPlayer(source);
-  onSourceSelect();
-};
-
-webcamSourceButton.addEventListener("click", onWebcamSelect);
-imageSourceButton.addEventListener("change", onImageSelect);
+// Start the player immediately with webcam on page load
+//window.addEventListener("load", startWithWebcam);
+startWithWebcam();

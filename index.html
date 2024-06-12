@@ -8,31 +8,7 @@
   </head>
   <body>
     <main>
-      <div class="start-screen">
-        <div class="start-screen__spinner">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="start-screen__inner hidden">
-          <div class="start-screen__title">Please define a source:</div>
-          <div class="start-screen__webcam">
-            <input type="radio" name="source" id="webcam" value="webcam" />
-            <label for="webcam">Use WebCam</label>
-          </div>
-          <div class="start-screen__photo">
-            <input type="file" id="image" accept="image/*" />
-            <label for="image">Upload a Photo</label>
-          </div>
-          <div class="start-screen__image"></div>
-        </div>
-      </div>
-
+      <!-- Removed start screen source selection popup -->
       <div class="hand-gestures-tip hidden">
         <div class="hand-gestures-tip__inner">
           <div class="hand-gestures-tip__title">Tip</div>
@@ -129,10 +105,9 @@
           </div>
         </div>
         <div class="categories"></div>
-        <div class="technologies"></div>
-      </div>
+        <div class="technologies"></div>      </div>
     </main>
-  </body>
-  <script src="BanubaClientToken.js"></script>
+    <script src="BanubaClientToken.js"></script>
   <script type="module" src="main.js"></script>
+  </body>
 </html>

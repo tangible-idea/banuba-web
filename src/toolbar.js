@@ -122,6 +122,7 @@ const createCategoryBlock = (categories) => {
 
     hidePopups();
 
+
     setSelectedCategoryInput(e.target);
     setSelectedCategory(
       getSelectedTechnology().categories[getSelectedCategoryInput().value],
@@ -144,15 +145,22 @@ const createTechBlock = () => {
       </div>`;
   }
 
+  // face tracking start
+  const onFaceTrackingSelect = async() => {
+    hidePopups();
+
+    importMessageBlock.classList.add("hidden");
+    //setSelectedTechInput(e.target);
+
+    setSelectedTechnology(effectsList["face_tracking"]);
+    createCategoryBlock(getSelectedTechnology().categories);
+    return;
+  };
+
   const onTechSelect = async (e) => {
     if (e.target === getSelectedTechInput()) {
       return;
     }
-
-    hidePopups();
-
-    importMessageBlock.classList.add("hidden");
-    setSelectedTechInput(e.target);
 
     if (getSelectedTechInput().value === "import") {
       setSelectedTechnology({ label: "Imported", categories: {} });
@@ -183,6 +191,8 @@ const createTechBlock = () => {
   document.querySelectorAll('input[name="tech"]').forEach((el) => {
     el.addEventListener("click", onTechSelect);
   });
+
+  onFaceTrackingSelect();
 };
 
 const hideElement = (element) => {
@@ -196,7 +206,9 @@ const hidePopups = () => {
   hideElement(testRulerBlock);
 };
 
-const onResetButtonClick = async () => {
+
+// reset
+export const onResetButtonClick = async () => {
   stopAnalysis();
   await clearEffect();
 
