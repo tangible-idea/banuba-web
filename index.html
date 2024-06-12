@@ -3,11 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Banuba SDK Web AR demo</title>
+    <title>recommends</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <main>
+
+      <div class="popup-tips">
+        <div class="popup-tips__inner">
+          <div class="popup-tips__title">Recommends</div>
+          <div class="popup-tips__subtitle">Choose one of your favorite.</div>
+          <div class="popup-tips__content">
+            <div class="popup-tips__content-item" onclick="selectItem(this)">
+              <img src="assets/icons/hand_gestures/Like.svg" alt="Like" />
+              <label>Like</label>
+            </div>
+            <div class="popup-tips__content-item" onclick="selectItem(this)">
+              <img src="assets/icons/hand_gestures/Ok.svg" alt="Ok" />
+              <label>Ok</label>
+            </div>
+          </div>
+        </div>
+        <button class="popup-tips__button">This one!</button>
+      </div>
       <!-- Removed start screen source selection popup -->
       <div class="hand-gestures-tip hidden">
         <div class="hand-gestures-tip__inner">
@@ -108,6 +126,8 @@
         <div class="technologies"></div>      </div>
     </main>
     <script src="BanubaClientToken.js"></script>
+    <script src="./src/popup-selection.js"></script>
   <script type="module" src="main.js"></script>
+
   </body>
 </html>
