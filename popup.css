@@ -72,3 +72,18 @@
   width: 220px;
   cursor: pointer;
 }
+
+.recommendations-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.recommendation-image {
+  width: 200px; /* Adjust size as needed */
+  height: 200px; /* Adjust size as needed */
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+}
