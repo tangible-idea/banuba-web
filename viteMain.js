@@ -3,7 +3,7 @@ const MODEL_URL = '/models';
 
 async function loadModels() {
   try {
-    await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
+    await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
     await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
     console.log('Models loaded successfully');
   } catch (error) {
@@ -34,13 +34,14 @@ async function analyzeImage(image) {
   try {
     console.log('Starting face detection');
 
-    const detections = await faceapi.detectAllFaces(image).withAgeAndGender();
+    const detections = await faceapi.detectAllFaces(image, new faceapi.TinyFaceDetectorOptions()).withAgeAndGender();
     console.log('Detections:', detections);
 
     if (detections.length > 0) {
       const { age, gender, genderProbability } = detections[0];
       const roundedAge = Math.round(age);
-      resultDiv.textContent = `Estimated Age: ${roundedAge} years, Gender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
+      const resultText=  `Estimated Age: ${roundedAge} years, Gender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
+      console.log(resultText)
     } else {
       resultDiv.textContent = 'No face detected. Please try another image.';
     }
