@@ -41,7 +41,7 @@ let currentEffect;
 
 const [player, modules] = await Promise.all([
   Player.create({
-    clientToken: process.env.BANUBA_CLIENT_TOKEN,
+    clientToken: window.BANUBA_CLIENT_TOKEN,
     proxyVideoRequestsTo: isSafari ? "___range-requests___/" : null,
     useFutureInterpolate: false,
   }),
