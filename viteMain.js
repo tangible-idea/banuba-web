@@ -1,29 +1,42 @@
 import * as faceapi from 'face-api.js';
+const MODEL_URL = '/models';
+
+async function loadModels() {
+  try {
+    await faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL);
+    await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+    console.log('Models loaded successfully');
+  } catch (error) {
+    console.error('Error loading models:', error);
+  }
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // try {
-  //   // 모델을 로드합니다.
-  //   await faceapi.nets.ssdMobilenetv1.loadFromUri('/models');
-  //   await faceapi.nets.ageGenderNet.loadFromUri('/models');
+  await loadModels();
 
-  //   const imageUpload = document.getElementById('imageUpload');
-  //   imageUpload.addEventListener('change', handleImageUpload);
-  // } catch (error) {
-  //   console.error('Error loading models:', error);
-  // }
+  const imageUpload = document.getElementById('imageUpload');
+  imageUpload.addEventListener('change', handleImageUpload);
 });
 
-const handleImageUpload = async (event) => {
+async function handleImageUpload(event) {
   const image = document.getElementById('inputImage');
   image.src = URL.createObjectURL(event.target.files[0]);
-  image.style.display = 'block';
+  image.onload = async () => {
+    console.log('Image loaded successfully');
+    await analyzeImage(image);
+  };
+}
 
+async function analyzeImage(image) {
   const resultDiv = document.getElementById('result');
   resultDiv.textContent = 'Analyzing...';
 
   try {
-    // 얼굴 인식 및 나이, 성별 추측
+    console.log('Starting face detection');
+
     const detections = await faceapi.detectAllFaces(image).withAgeAndGender();
+    console.log('Detections:', detections);
+
     if (detections.length > 0) {
       const { age, gender, genderProbability } = detections[0];
       const roundedAge = Math.round(age);
@@ -35,4 +48,4 @@ const handleImageUpload = async (event) => {
     console.error('Error detecting faces:', error);
     resultDiv.textContent = 'Error detecting faces. Please try again.';
   }
-};
+}
