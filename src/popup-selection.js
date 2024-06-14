@@ -110,6 +110,9 @@ function selectItem(item, tag) {
   selectedAnswers[currentQuestionIndex] = tag;
 }
 
+function spinWheel() {
+}
+
 function selectNext() {
   // Check if an item is selected
   if (selectedAnswers[currentQuestionIndex] === undefined) {
@@ -169,7 +172,7 @@ function showResults() {
   document.querySelector('.popup-tips__subtitle').innerText = '';
   //document.querySelector('.popup-tips__button').style.display = 'none';
   document.querySelector('.popup-tips__button').innerText = 'Go to shop';
+  document.querySelector('.popup-tips__button').onclick= spinWheel;
 }
-
 // Initialize the first question on page load
 renderQuestion();
