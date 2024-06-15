@@ -47,18 +47,20 @@ const onScreenshotButtonClick = async (e) => {
     screenshotButton.src = "assets/icons/controls/icon-screenshot-active.svg";
   } else {
     screenshotButton.src = "assets/icons/controls/icon-screenshot.svg";
-    
-    const imageDOM = document.getElementById('inputImage');
-    const screenShotData= await getScreenshot();
-    imageDOM.src = URL.createObjectURL(screenShotData);
-    console.log(`Image url: ${imageDOM.src}`);
 
-    imageDOM.onload = async () => {
-      console.log('Image loaded successfully');
-      uploadImage(screenShotData, "face");
-      const { resultString, roundedAge, gender } = await analyzeImage(imageDOM);
-      openFacePopup(imageDOM, resultString, roundedAge, gender);
-    };
+    setTimeout(async () => {
+      const imageDOM = document.getElementById('inputImage');
+      const screenShotData= await getScreenshot();
+      imageDOM.src = URL.createObjectURL(screenShotData);
+      console.log(`Image url: ${imageDOM.src}`);
+
+      imageDOM.onload = async () => {
+        console.log('Image loaded successfully');
+        uploadImage(screenShotData, "face");
+        const { resultString, roundedAge, gender } = await analyzeImage(imageDOM);
+        openFacePopup(imageDOM, resultString, roundedAge, gender);
+      };
+    }, 100);
   }
 };
 
