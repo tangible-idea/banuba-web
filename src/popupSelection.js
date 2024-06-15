@@ -29,8 +29,8 @@ const results = {
     title: "The Trendsetter",
     description: "You love to be ahead of the curve and aren't afraid to experiment with your style. You gravitate towards bold pieces that make a statement.",
     recommendations: [
-      { src: "assets/images/chunky_gold_chain_necklace.png", alt: "Chunky Gold Chain Necklace" },
-      { src: "assets/images/gold_watch_leather_band.png", alt: "Gold Watch with Leather Band" },
+      { src: "assets/images/gold_bird_pendant.png", alt: "From ciel neckless" },
+      { src: "assets/images/gold_pendant_small_design.png", alt: "Gold Watch with Leather Band" },
     ],
   },
   B: {
@@ -38,14 +38,14 @@ const results = {
     description: "You value simplicity and quality. Your jewelry is an extension of your understated style, with clean lines and timeless designs.",
     recommendations: [
       { src: "assets/images/silver_chain_unique_clasp.png", alt: "Silver Chain with Unique Clasp" },
-      { src: "assets/images/gold_pendant_small_design.png", alt: "Gold Pendant with Small Design" },
+      { src: "assets/images/fromciel_neckless.png", alt: "fromciel_neckless" },
     ],
   },
   C: {
     title: "The Eclectic Mixologist",
     description: "You love to play with different styles and create unique combinations. You're drawn to pieces that are versatile and can be dressed up or down.",
     recommendations: [
-      { src: "assets/images/silver_watch_leather_band.png", alt: "Silver Watch with Leather Band" },
+      { src: "assets/images/silver_bird_pendant.png", alt: "Silver Bird Pendant" },
       { src: "assets/images/gold_bird_pendant.png", alt: "Gold Bird Pendant" },
     ],
   },
@@ -57,12 +57,12 @@ const results = {
       { src: "assets/images/silver_watch_metal_band.png", alt: "Silver Watch with Metal Band" },
     ],
   },
-  BC: {
+  fromciel: {
     title: "The Timeless Sparkler",
     description: "You gravitate towards timeless pieces with a touch of sparkle and personality.",
     recommendations: [
-      { src: "assets/images/gold_pendant_small_design.png", alt: "Gold Pendant with Small Design" },
-      { src: "assets/images/silver_chain_unique_clasp.png", alt: "Silver Chain with Unique Clasp" },
+      { src: "assets/images/fromciel_neckless.png", alt: "formciel neckless" },
+      { src: "assets/images/silver_bird_pendant.png", alt: "Silver Bird" },
     ],
   },
 };
@@ -163,13 +163,17 @@ function showResults() {
     resultCategory = mostSelectedTags[0];
   } else if (mostSelectedTags.includes('A') && mostSelectedTags.includes('B')) {
     resultCategory = 'AB';
-  } else if (mostSelectedTags.includes('B') && mostSelectedTags.includes('C')) {
-    resultCategory = 'BC';
-  } else {
+  }
+    else {
     resultCategory = mostSelectedTags[0]; // Fallback to the first tag in case of a tie
   }
 
   const result = results[resultCategory];
+
+  // fromciel target 
+  if(result === "B" && age < 30 && gender == "F") {
+    result= "fromciel"
+  }
 
   // Display the results
   const content = document.querySelector('.popup-tips__content');
