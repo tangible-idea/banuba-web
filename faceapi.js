@@ -51,7 +51,7 @@ export const analyzeImage = async(image) => {
     if (detections.length > 0) {
       const { age, gender, genderProbability } = detections[0];
       const roundedAge = Math.round(age);
-      const resultText=  `Estimated Age: ${roundedAge} years, Gender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
+      const resultText=  `Estimated Age: ${roundedAge} years\nGender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
       console.log(resultText)
       return resultText;
     } else {
