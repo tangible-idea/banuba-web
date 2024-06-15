@@ -68,7 +68,7 @@ const results = {
 };
 
 let currentQuestionIndex = 0;
-let selectedAnswers = [];
+export let selectedAnswers = [];
 
 const selectionCounts = { A: 0, B: 0, C: 0 };
 

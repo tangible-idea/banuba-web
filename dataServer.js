@@ -64,7 +64,7 @@ function createFileName(extension) {
   return `${dateTimeString}.${extension}`;
 }
 
-import { age, gender } from './src/popupSelection.js';
+import { age, gender, selectedAnswers } from './src/popupSelection.js';
 
 export const saveUserResult = async(emailInput, selectedImage) => {
 
@@ -76,7 +76,8 @@ export const saveUserResult = async(emailInput, selectedImage) => {
           wishlist_image: selectedImage,
           age: age,
           gender: gender,
-          face_url: savedImagePath
+          face_url: savedImagePath,
+          selected_answers: selectedAnswers
         }
       ]);
 
