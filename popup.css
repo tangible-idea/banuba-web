@@ -75,9 +75,10 @@ body {
   border: none;
   border-radius: 24px;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   width: 220px;
+  height: 80px;
   cursor: pointer;
 }
 
@@ -122,6 +123,12 @@ body {
   align-items: center;
 }
 
+.popup-button-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 #face-popup-image {
   max-width: 100%;
   height: auto;
@@ -140,19 +147,22 @@ body {
 }
 
 .face-popup-button {
-  background: #007bff; /* Change button color to a softer blue */
+  background: #000;
   color: #fff;
   border: none;
   border-radius: 24px;
-  padding: 12px 24px; /* Increase padding for a better look */
-  font-size: 16px;
-  font-weight: 500;
+  padding: 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  width: 220px;
+  height: 80px;
   cursor: pointer;
+  margin: 5px;
   transition: background-color 0.3s, transform 0.3s; /* Add transition effects */
 }
 
 .face-popup-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #000; /* Darker blue on hover */
   transform: translateY(-2px); /* Slight lift effect on hover */
 }
 

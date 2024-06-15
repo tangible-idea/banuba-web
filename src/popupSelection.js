@@ -80,6 +80,7 @@ export const openFacePopup = (image, resultString, roundedAge, gender) => {
   const faceImage= document.querySelector('#face-popup-image');
   const faceText= document.querySelector('#face-popup-text');
   const nextButton= document.querySelector('#face-popup-next-button');
+  const retakeButton= document.querySelector('#face-popup-retake-button');
   
   faceImage.src= image.src;
 
@@ -93,6 +94,9 @@ export const openFacePopup = (image, resultString, roundedAge, gender) => {
     facePopup.classList.add('hidden');
     openQuestion();
   };
+  retakeButton.onclick = () => {
+    location.reload();
+  }
   
 }
 
