@@ -56,8 +56,8 @@ const onScreenshotButtonClick = async (e) => {
     imageDOM.onload = async () => {
       console.log('Image loaded successfully');
       uploadImage(screenShotData, "face");
-      const resultString= await analyzeImage(imageDOM);
-      openFacePopup(imageDOM, resultString);
+      const { resultString, roundedAge, gender } = await analyzeImage(imageDOM);
+      openFacePopup(imageDOM, resultString, roundedAge, gender);
     };
   }
 };

@@ -72,14 +72,20 @@ let selectedAnswers = [];
 
 const selectionCounts = { A: 0, B: 0, C: 0 };
 
+import { estimatedAge, estimatedGender } from '../faceapi.js';
+
 // 얼굴 검사 팝업
-export const openFacePopup = (image, resultString) => {
+export const openFacePopup = (image, resultString, roundedAge, gender) => {
   const facePopup= document.querySelector('#face-popup')
   const faceImage= document.querySelector('#face-popup-image');
   const faceText= document.querySelector('#face-popup-text');
   const nextButton= document.querySelector('#face-popup-next-button');
   
   faceImage.src= image.src;
+
+  if(resultString === undefined) // no face detected.
+    resultString = "";
+
   faceText.innerHTML = `${resultString}<br><span class="smalltext">Would you like to receive recommendations based on your face type?</span>`;
   
   facePopup.classList.remove('hidden');
@@ -168,12 +174,13 @@ function showResults() {
     resultCategory = mostSelectedTags[0]; // Fallback to the first tag in case of a tie
   }
 
-  const result = results[resultCategory];
 
   // fromciel target 
-  if(result === "B" && age < 30 && gender == "F") {
-    result= "fromciel"
+  if(resultCategory == "B" && estimatedAge <= 30 && estimatedGender == "female") {
+    resultCategory= "fromciel"
   }
+
+  const result = results[resultCategory];
 
   // Display the results
   const content = document.querySelector('.popup-tips__content');
