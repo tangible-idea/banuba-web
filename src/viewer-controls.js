@@ -8,6 +8,7 @@ import {
 import {
   muteButton,
   screenshotButton,
+  popupNextButton,
   popups,
   recDurationBlock,
   recButton,
@@ -18,7 +19,10 @@ import {
  // onFaceTrackingSelect
 } from "./toolbar.js";
 
-import { openQuestion } from './popupSelection.js'
+import { 
+  openQuestion,
+  selectNext
+} from './popupSelection.js'
 import { uploadImage } from '../dataServer.js'
 
 import { analyzeImage } from '../faceapi.js'
@@ -108,7 +112,12 @@ const onRecButtonClick = async () => {
   isRecording = 1 - isRecording;
 };
 
+const onPopupNextClick=()=> {
+  selectNext();
+};
+
 muteButton.addEventListener("click", onMuteButtonClick);
+popupNextButton.addEventListener("click", onPopupNextClick);
 screenshotButton.addEventListener("mousedown", onScreenshotButtonClick);
 screenshotButton.addEventListener("mouseup", onScreenshotButtonClick);
 recButton.addEventListener("click", onRecButtonClick);

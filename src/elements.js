@@ -13,6 +13,7 @@ export const testRulerBlock = document.querySelector(".test-ruler");
 export const effectsBlock = document.querySelector(".effects-list");
 export const resetButton = document.querySelector("#reset-button");
 export const muteButton = document.querySelector("#mute-button");
+export const popupNextButton = document.querySelector("#popup-next-button");
 export const screenshotButton = document.querySelector("#screenshot-button");
 export const recDurationBlock = document.querySelector("#rec-duration");
 export const recButton = document.querySelector("#rec-button");

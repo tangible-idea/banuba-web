@@ -115,7 +115,7 @@ function selectItem(item, tag) {
 }
 
 
-function selectNext(e) {
+export const selectNext = () => {
   // Check if an item is selected
   if (selectedAnswers[currentQuestionIndex] === undefined) {
     alert('Please select an option before proceeding.');
@@ -173,8 +173,10 @@ function showResults() {
   document.querySelector('.popup-tips__title').innerText = '';
   document.querySelector('.popup-tips__subtitle').innerText = '';
   //document.querySelector('.popup-tips__button').style.display = 'none';
-  document.querySelector('.popup-tips__button').innerText = 'Go to shop';
-  document.querySelector('.popup-tips__button').onclick= spinWheel;
+  document.querySelector('#popup-next-button').innerText = 'Discard';
+  document.querySelector('#popup-next-button').onclick= onDiscard;
 }
-// Initialize the first question on page load
-//renderQuestion();
+
+function onDiscard() {
+  location.reload();
+}
