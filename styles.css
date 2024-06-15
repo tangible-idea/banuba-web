@@ -86,17 +86,23 @@ canvas {
 }
 
 .controls {
-  position: absolute;
-  bottom: 142px;
-  right: 40px;
-  width: 152px;
-  display: flex;
+  text-align: center;
+  width: 100%;
   justify-content: space-between;
   z-index: 1;
 }
 
 .controls + input[type="image"] {
   cursor: pointer;
+}
+
+#screenshot-button {
+  position: absolute; /* Draw over the screen */
+  bottom: 10%; /* Adjust as needed */
+  right: 100px; /* Adjust as needed */
+  width: 100px; /* Increase the size */
+  height: 100px; /* Increase the size */
+  z-index: 1000; /* Ensure it is on top of other elements */
 }
 
 #rec-duration {
