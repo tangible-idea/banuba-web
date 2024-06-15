@@ -72,7 +72,11 @@ let selectedAnswers = [];
 
 const selectionCounts = { A: 0, B: 0, C: 0 };
 
-function renderQuestion() {
+// open question
+export const openQuestion = () => {
+
+  document.querySelector('.popup-tips').classList.remove('hidden');
+
   const question = questions[currentQuestionIndex];
 
   document.querySelector('.popup-tips__title').innerText = question.title;
@@ -110,8 +114,6 @@ function selectItem(item, tag) {
   selectedAnswers[currentQuestionIndex] = tag;
 }
 
-function spinWheel() {
-}
 
 function selectNext() {
   // Check if an item is selected
@@ -127,7 +129,7 @@ function selectNext() {
   // Move to the next question or finish
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
-    renderQuestion();
+    openQuestion();
   } else {
     showResults();
   }
@@ -175,4 +177,4 @@ function showResults() {
   document.querySelector('.popup-tips__button').onclick= spinWheel;
 }
 // Initialize the first question on page load
-renderQuestion();
+//renderQuestion();

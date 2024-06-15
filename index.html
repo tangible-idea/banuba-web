@@ -10,7 +10,7 @@
   <body>
     <main>
 
-      <div class="popup-tips">
+      <div class="popup-tips hidden">
         <div class="popup-tips__inner">
           <div class="popup-tips__title"></div>
           <div class="popup-tips__subtitle"></div>
@@ -81,6 +81,7 @@
         <input
           type="image"
           id="rec-button"
+          class="hidden"
           src="assets/icons/controls/icon-record.svg"
           alt="rec-button"
         />
@@ -92,6 +93,7 @@
         />
         <input
           type="image"
+          class="hidden"
           id="mute-button"
           src="assets/icons/controls/icon-sound.svg"
           alt="mute-button"
@@ -125,7 +127,7 @@
     <script src="BanubaClientToken.js"></script>
     <script src="./src/popup-selection.js"></script>
   <script type="module" src="main.js"></script>
-  <script type="module" src="viteMain.js"></script>
+  <script type="module" src="faceapi.js"></script>
 
   </body>
 </html>
