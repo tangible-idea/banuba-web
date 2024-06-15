@@ -80,7 +80,7 @@ export const openFacePopup = (image, resultString) => {
   const nextButton= document.querySelector('#face-popup-next-button');
   
   faceImage.src= image.src;
-  faceText.innerText= resultString;
+  faceText.innerHTML = `${resultString}<br><span class="smalltext">Would you like to receive recommendations based on your face type?</span>`;
   
   facePopup.classList.remove('hidden');
   nextButton.onclick = () => {
@@ -191,10 +191,15 @@ function showResults() {
   document.querySelector('.popup-tips__title').innerText = '';
   document.querySelector('.popup-tips__subtitle').innerText = '';
   //document.querySelector('.popup-tips__button').style.display = 'none';
-  document.querySelector('#popup-next-button').innerText = 'Discard';
+  document.querySelector('#popup-next-button').innerText = 'Get the result & 10% discount vouchers';
   document.querySelector('#popup-next-button').onclick= onDiscard;
 }
 
 function onDiscard() {
   location.reload();
+}
+
+
+function getEmail() {
+
 }

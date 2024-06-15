@@ -112,6 +112,10 @@ body {
   width: 100%;
 }
 
+#face-popup span.smalltext {
+  font-size: 22px;
+}
+
 .face-popup__inner {
   display: flex;
   flex-direction: column;
