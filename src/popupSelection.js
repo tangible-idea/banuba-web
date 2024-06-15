@@ -100,6 +100,10 @@ export const openFacePopup = (image, resultString, roundedAge, gender) => {
   
 }
 
+
+import { popupNextButton } from './elements.js';
+var isShowResult= false;
+
 // open question (다음 질문 또는 처음 질문.)
 export const openQuestion = () => {
 
@@ -144,6 +148,12 @@ function selectItem(item, tag) {
 
 // 다음 질문
 export const selectNext = () => {
+  
+  if(isShowResult) {
+    freeLuckyDraw();
+    return;
+  }
+
   // Check if an item is selected
   if (selectedAnswers[currentQuestionIndex] === undefined) {
     alert('Please select an option before proceeding.');
@@ -156,6 +166,7 @@ export const selectNext = () => {
 
   // Move to the next question or finish
   currentQuestionIndex++;
+  console.log(`currentQuestionIndex : ${currentQuestionIndex}`)
   if (currentQuestionIndex < questions.length) {
     openQuestion();
   } else {
@@ -164,6 +175,10 @@ export const selectNext = () => {
 }
 
 function showResults() {
+
+  // check flag.
+  isShowResult= true;
+
   // Determine the most selected tag
   const maxCount = Math.max(selectionCounts.A, selectionCounts.B, selectionCounts.C);
   const mostSelectedTags = Object.keys(selectionCounts).filter(tag => selectionCounts[tag] === maxCount);
@@ -206,8 +221,7 @@ function showResults() {
   document.querySelector('.popup-tips__title').innerText = '';
   document.querySelector('.popup-tips__subtitle').innerText = '';
   //document.querySelector('.popup-tips__button').style.display = 'none';
-  document.querySelector('#popup-next-button').innerText = 'Win a Free Accessory Lucky Draw!';
-  document.querySelector('#popup-next-button').onclick= freeLuckyDraw;
+  popupNextButton.innerText = 'Win a Free Accessory Lucky Draw!';
 }
 
 function onDiscard() {
@@ -232,26 +246,31 @@ function freeLuckyDraw() {
   };
 
   // Handle image clicks
-imageContainer.addEventListener("click", (event) => {
-  const clickedDiv = event.target.closest("div"); // Get the parent div
+  imageContainer.addEventListener("click", (event) => {
+    const clickedDiv = event.target.closest("div"); // Get the parent div
 
-  if (clickedDiv) {
-    // Remove 'selected' class from previously selected image
-    if (selectedImage) {
-      selectedImage.classList.remove("selected");
+    if (clickedDiv) {
+      // Remove 'selected' class from previously selected image
+      if (selectedImage) {
+        selectedImage.classList.remove("selected");
+      }
+      selectedImage = clickedDiv;
+      clickedDiv.classList.add("selected");
     }
-    selectedImage = clickedDiv;
-    clickedDiv.classList.add("selected");
-  }
-});
+  });
 
-// Handle submit button click
-submitButton.onclick = () => {
-  if (selectedImage) {
-    console.log("Selected Image:", selectedImage.querySelector("img").src);
-    // Do something with the selected image (e.g., send to server)
-  } else {
-    alert("Please select an image.");
-  }
-};
+  // Handle submit button click
+  submitButton.onclick = () => {
+    const emailInput = document.getElementById('emailInput').value;
+    if (!selectedImage) {
+      alert('Please select an accessory to win!');
+      event.preventDefault();
+    } else if (!emailInput) {
+      alert('Please enter your email to get your prize.');
+      event.preventDefault();
+    } else {
+      alert(`Email: ${emailInput}\nSelected Image: ${selectedImage.src}`);
+      // Here you can add the code to submit the form data
+    }
+  };
 }

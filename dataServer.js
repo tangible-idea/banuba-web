@@ -8,6 +8,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // 버킷 이름
 const bucketName = 'images'; // 예: images
 
+export var savedImagePath = '';
+
 export const uploadImage= async(image, folderName) => {
   if (!image) {
     console.log('Please select a file.');
@@ -26,7 +28,9 @@ export const uploadImage= async(image, folderName) => {
     }
 
     // 성공 시 결과 표시
-    console.log(`File uploaded: ${data.Key}`);
+    console.log(`File uploaded: ${data.path} ${data.publicURL}`);
+    savedImagePath= data.path;
+    
   } catch (error) {
     console.error('Error uploading file:', error);document.getElementById('result').innerText = `Error uploading file: ${error.message}`;
   }
