@@ -115,7 +115,7 @@ function selectItem(item, tag) {
 }
 
 
-function selectNext() {
+function selectNext(e) {
   // Check if an item is selected
   if (selectedAnswers[currentQuestionIndex] === undefined) {
     alert('Please select an option before proceeding.');

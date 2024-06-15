@@ -18,7 +18,7 @@ import {
  // onFaceTrackingSelect
 } from "./toolbar.js";
 
-import { openQuestion } from './popup-selection.js'
+import { openQuestion } from './popupSelection.js'
 import { uploadImage } from '../dataServer.js'
 
 import { analyzeImage } from '../faceapi.js'
