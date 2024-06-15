@@ -214,7 +214,7 @@ export const onResetButtonClick = async () => {
 
   setSelectedCategory(null);
   setSelectedTechnology(null);
-  getSelectedTechInput().checked = false;
+  //getSelectedTechInput().checked = false;
   setSelectedTechInput(null);
   setSelectedEffect(null);
   setSelectedCategoryInput(null);

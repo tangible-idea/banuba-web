@@ -19,6 +19,9 @@ import {
 } from "./toolbar.js";
 
 import { openQuestion } from './popup-selection.js'
+import { uploadImage } from '../dataServer.js'
+
+import { analyzeImage } from '../faceapi.js'
 
 
 let isSoundOn = 0;
@@ -34,38 +37,24 @@ const onMuteButtonClick = () => {
   muteToggle(isSoundOn);
 };
 
-
-const showScreenshotPopup=(url) => {
-  const popup = document.createElement("div");
-    popup.classList.add("popup", "popup__hidden");
-    popup.innerHTML = `<span class="popup__bold">Analyzing your face...</span> <span id="screenshot-link"><a href="${url}" target="_blank">link</a></span>`;
-    popups.prepend(popup);
-
-    setTimeout(() => {
-      popup.classList.remove("popup__hidden");
-    }, 20);
-
-    setTimeout(() => {
-      //onFaceTrackingSelect();
-      location.reload();
-      popup.classList.add("popup__hidden");
-      setTimeout(() => {
-        popup.remove();
-      }, 5500);
-    }, 5000);
-}
-
-
 const onScreenshotButtonClick = async (e) => {
   if (e.type === "mousedown") {
     onResetButtonClick(); // show without filter.
     screenshotButton.src = "assets/icons/controls/icon-screenshot-active.svg";
   } else {
     screenshotButton.src = "assets/icons/controls/icon-screenshot.svg";
-    const url = URL.createObjectURL(await getScreenshot());
     
-    showScreenshotPopup(url);
-    openQuestion();
+    const imageDOM = document.getElementById('inputImage');
+    const screenShotData= await getScreenshot();
+    imageDOM.src = URL.createObjectURL(screenShotData);
+    console.log(`Image url: ${imageDOM.src}`);
+
+    imageDOM.onload = async () => {
+      console.log('Image loaded successfully');
+      uploadImage(screenShotData, "face");
+      await analyzeImage(imageDOM);
+      openQuestion();
+    };
   }
 };
 

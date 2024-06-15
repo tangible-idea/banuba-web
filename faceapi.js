@@ -1,6 +1,7 @@
 import * as faceapi from 'face-api.js';
 const MODEL_URL = '/models';
 
+// load image processing models
 async function loadModels() {
   try {
     await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
@@ -13,23 +14,33 @@ async function loadModels() {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadModels();
-
-  const imageUpload = document.getElementById('imageUpload');
-  imageUpload.addEventListener('change', handleImageUpload);
 });
 
-async function handleImageUpload(event) {
-  const image = document.getElementById('inputImage');
-  image.src = URL.createObjectURL(event.target.files[0]);
-  image.onload = async () => {
-    console.log('Image loaded successfully');
-    await analyzeImage(image);
-  };
+const showAnalyzingPopup=(content) => {
+  const popup = document.createElement("div");
+    popup.classList.add("popup", "popup__hidden");
+    popup.innerHTML = `<span class="popup__bold">${content}</span> <span id="screenshot-link"></span>`;
+    popups.prepend(popup);
+
+    setTimeout(() => {
+      popup.classList.remove("popup__hidden");
+    }, 20);
+
+    setTimeout(() => {
+      //onFaceTrackingSelect();
+      //location.reload();
+      popup.classList.add("popup__hidden");
+      
+      setTimeout(() => {
+        popup.remove();
+      }, 5500);
+
+    }, 5000);
 }
 
-async function analyzeImage(image) {
-  const resultDiv = document.getElementById('result');
-  resultDiv.textContent = 'Analyzing...';
+// Analzye Image
+export const analyzeImage = async(image) => {
+  showAnalyzingPopup("Analzying your face...");
 
   try {
     console.log('Starting face detection');
@@ -43,10 +54,10 @@ async function analyzeImage(image) {
       const resultText=  `Estimated Age: ${roundedAge} years, Gender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
       console.log(resultText)
     } else {
-      resultDiv.textContent = 'No face detected. Please try another image.';
+      //resultDiv.textContent = 'No face detected. Please try another image.';
     }
   } catch (error) {
     console.error('Error detecting faces:', error);
-    resultDiv.textContent = 'Error detecting faces. Please try again.';
+    showAnalyzingPopup("Error detecting faces. Please try again.");
   }
 }
