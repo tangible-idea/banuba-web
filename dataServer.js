@@ -30,7 +30,7 @@ export const uploadImage= async(image, folderName) => {
     // 성공 시 결과 표시
     console.log(`File uploaded: ${data.path} ${data.publicURL}`);
     savedImagePath= data.path;
-    
+
   } catch (error) {
     console.error('Error uploading file:', error);document.getElementById('result').innerText = `Error uploading file: ${error.message}`;
   }
@@ -62,4 +62,30 @@ function getFormattedDateTime() {
 function createFileName(extension) {
   const dateTimeString = getFormattedDateTime();
   return `${dateTimeString}.${extension}`;
+}
+
+
+export const saveUserResult = async(emailInput, selectedImage) => {
+
+  try {
+    const { data, error } = await supabase
+      .from('result') // Replace with your actual table name
+      .insert([
+        { email: emailInput, 
+          wishlist_image: selectedImage
+        }
+      ]);
+
+    if (error) {
+      console.error('Error inserting data:', error.message);
+      alert('Error saving your data. Please try again.');
+    } else {
+      alert('Data saved successfully!');
+      console.log('Inserted data:', data);
+      // Optionally, you can clear the form or perform other actions
+    }
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    alert('An unexpected error occurred. Please try again.');
+  }
 }

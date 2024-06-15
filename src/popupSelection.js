@@ -228,6 +228,7 @@ function onDiscard() {
   location.reload();
 }
 
+import { saveUserResult } from '../dataServer.js';
 
 function freeLuckyDraw() {
 
@@ -269,8 +270,10 @@ function freeLuckyDraw() {
       alert('Please enter your email to get your prize.');
       event.preventDefault();
     } else {
-      alert(`Email: ${emailInput}\nSelected Image: ${selectedImage.src}`);
-      // Here you can add the code to submit the form data
+      // submit result
+      const imageSrc= selectedImage.getElementsByTagName('img')[0].src;
+      console.log(imageSrc);
+      saveUserResult(emailInput, imageSrc);
     }
   };
 }
