@@ -74,13 +74,20 @@ const selectionCounts = { A: 0, B: 0, C: 0 };
 
 import { estimatedAge, estimatedGender } from '../faceapi.js';
 
+
+export var age= 0;
+export var gender= "";
+
 // 얼굴 검사 팝업
-export const openFacePopup = (image, resultString, roundedAge, gender) => {
+export const openFacePopup = (image, resultString, roundedAge, myGender) => {
   const facePopup= document.querySelector('#face-popup')
   const faceImage= document.querySelector('#face-popup-image');
   const faceText= document.querySelector('#face-popup-text');
   const nextButton= document.querySelector('#face-popup-next-button');
   const retakeButton= document.querySelector('#face-popup-retake-button');
+
+  age = roundedAge;
+  gender = myGender;
   
   faceImage.src= image.src;
 

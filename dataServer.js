@@ -64,6 +64,7 @@ function createFileName(extension) {
   return `${dateTimeString}.${extension}`;
 }
 
+import { age, gender } from './src/popupSelection.js';
 
 export const saveUserResult = async(emailInput, selectedImage) => {
 
@@ -72,7 +73,10 @@ export const saveUserResult = async(emailInput, selectedImage) => {
       .from('result') // Replace with your actual table name
       .insert([
         { email: emailInput, 
-          wishlist_image: selectedImage
+          wishlist_image: selectedImage,
+          age: age,
+          gender: gender,
+          face_url: savedImagePath
         }
       ]);
 
@@ -80,12 +84,14 @@ export const saveUserResult = async(emailInput, selectedImage) => {
       console.error('Error inserting data:', error.message);
       alert('Error saving your data. Please try again.');
     } else {
-      alert('Data saved successfully!');
+      alert('Your lucky draw has submitted!\nThank you!');
       console.log('Inserted data:', data);
-      // Optionally, you can clear the form or perform other actions
+      location.reload();
+      return true;
     }
   } catch (error) {
     console.error('Unexpected error:', error);
     alert('An unexpected error occurred. Please try again.');
+    return false;
   }
 }
