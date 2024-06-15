@@ -170,3 +170,78 @@ body {
 .hidden {
   display: none;
 }
+
+
+
+/* end popup */
+
+.popup {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px 40px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(51, 61, 83, 0.1);
+  text-align: center;
+  max-width: 800px;
+  max-height: 100%;
+  width: 100%;
+  z-index: 1; /* Ensure it's above other elements */
+}
+
+.popup-content {
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-container > div {
+  margin: 8px;
+  cursor: pointer; /* Make images selectable */
+  border: 15px solid transparent; /* Border for visual feedback */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.image-container img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.image-container .selected {
+  border-color: rgba(51, 51, 51, 0.3); /* 50% transparent border */
+  box-shadow: 0 0 10px rgba(51, 51, 51, 0.5); /* Add a shadow for a better visual effect */
+}
+
+/* Email input field */
+#emailInput {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 20px;
+}

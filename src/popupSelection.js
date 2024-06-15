@@ -206,8 +206,8 @@ function showResults() {
   document.querySelector('.popup-tips__title').innerText = '';
   document.querySelector('.popup-tips__subtitle').innerText = '';
   //document.querySelector('.popup-tips__button').style.display = 'none';
-  document.querySelector('#popup-next-button').innerText = 'Get the result & 10% discount vouchers';
-  document.querySelector('#popup-next-button').onclick= onDiscard;
+  document.querySelector('#popup-next-button').innerText = 'Win a Free Accessory Lucky Draw!';
+  document.querySelector('#popup-next-button').onclick= freeLuckyDraw;
 }
 
 function onDiscard() {
@@ -215,6 +215,43 @@ function onDiscard() {
 }
 
 
-function getEmail() {
+function freeLuckyDraw() {
 
+  // Get elements
+  const popup = document.getElementById("myPopup");
+  const closeButton = document.getElementsByClassName("close")[0];
+  const imageContainer = document.querySelector(".image-container");
+  const submitButton = document.getElementById("submitButton");
+  let selectedImage = null;
+
+  popup.style.display = "block";
+
+  // Close popup
+  closeButton.onclick = () => {
+    popup.style.display = "none";
+  };
+
+  // Handle image clicks
+imageContainer.addEventListener("click", (event) => {
+  const clickedDiv = event.target.closest("div"); // Get the parent div
+
+  if (clickedDiv) {
+    // Remove 'selected' class from previously selected image
+    if (selectedImage) {
+      selectedImage.classList.remove("selected");
+    }
+    selectedImage = clickedDiv;
+    clickedDiv.classList.add("selected");
+  }
+});
+
+// Handle submit button click
+submitButton.onclick = () => {
+  if (selectedImage) {
+    console.log("Selected Image:", selectedImage.querySelector("img").src);
+    // Do something with the selected image (e.g., send to server)
+  } else {
+    alert("Please select an image.");
+  }
+};
 }
