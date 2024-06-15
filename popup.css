@@ -87,3 +87,61 @@
   border-radius: 8px;
   margin: 10px;
 }
+
+
+/* face popup */
+/* popup.css */
+
+/* Style for face-popup */
+/* face popup */
+#face-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 60px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(51, 61, 83, 0.1);
+  text-align: center;
+  max-width: 800px; /* Increased width */
+  width: 100%;
+}
+
+.face-popup__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#face-popup-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+#face-popup-text {
+  text-align: center;
+  font-size: 18px;
+}
+
+.face-popup-button {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  width: 220px;
+  cursor: pointer;
+}
+
+.face-popup-button:hover {
+  background-color: #333;
+}
+
+/* Style for hidden element */
+.hidden {
+  display: none;
+}

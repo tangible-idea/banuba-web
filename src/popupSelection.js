@@ -72,7 +72,25 @@ let selectedAnswers = [];
 
 const selectionCounts = { A: 0, B: 0, C: 0 };
 
-// open question
+// 얼굴 검사 팝업
+export const openFacePopup = (image, resultString) => {
+  const facePopup= document.querySelector('#face-popup')
+  const faceImage= document.querySelector('#face-popup-image');
+  const faceText= document.querySelector('#face-popup-text');
+  const nextButton= document.querySelector('#face-popup-next-button');
+  
+  faceImage.src= image.src;
+  faceText.innerText= resultString;
+  
+  facePopup.classList.remove('hidden');
+  nextButton.onclick = () => {
+    facePopup.classList.add('hidden');
+    openQuestion();
+  };
+  
+}
+
+// open question (다음 질문 또는 처음 질문.)
 export const openQuestion = () => {
 
   document.querySelector('.popup-tips').classList.remove('hidden');
@@ -114,7 +132,7 @@ function selectItem(item, tag) {
   selectedAnswers[currentQuestionIndex] = tag;
 }
 
-
+// 다음 질문
 export const selectNext = () => {
   // Check if an item is selected
   if (selectedAnswers[currentQuestionIndex] === undefined) {

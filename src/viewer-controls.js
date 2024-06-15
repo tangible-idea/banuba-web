@@ -20,11 +20,11 @@ import {
 } from "./toolbar.js";
 
 import { 
-  openQuestion,
+  openFacePopup,
   selectNext
 } from './popupSelection.js'
-import { uploadImage } from '../dataServer.js'
 
+import { uploadImage } from '../dataServer.js'
 import { analyzeImage } from '../faceapi.js'
 
 
@@ -56,8 +56,8 @@ const onScreenshotButtonClick = async (e) => {
     imageDOM.onload = async () => {
       console.log('Image loaded successfully');
       uploadImage(screenShotData, "face");
-      await analyzeImage(imageDOM);
-      openQuestion();
+      const resultString= await analyzeImage(imageDOM);
+      openFacePopup(imageDOM, resultString);
     };
   }
 };

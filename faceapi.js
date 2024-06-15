@@ -53,8 +53,10 @@ export const analyzeImage = async(image) => {
       const roundedAge = Math.round(age);
       const resultText=  `Estimated Age: ${roundedAge} years, Gender: ${gender} (${(genderProbability * 100).toFixed(2)}%)`;
       console.log(resultText)
+      return resultText;
     } else {
       //resultDiv.textContent = 'No face detected. Please try another image.';
+      return "";
     }
   } catch (error) {
     console.error('Error detecting faces:', error);
